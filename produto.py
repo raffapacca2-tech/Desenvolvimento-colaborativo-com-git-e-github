@@ -1,10 +1,11 @@
 import os
 import colorama 
-colorama.init()
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True) 
 
 def menu():
     print()
-    print("====== MENU ======")
+    print(Fore.CYAN + Style.BRIGHT + "====== MENU ======")
     print("1- cadastar produtos \n2-listar produtos \n0-Encerrar programa \n")
 
     escolha= int(input("O que você deseja fazer?  "))
@@ -20,23 +21,23 @@ def cadastrar(arquivo):
         try:
             preco = float(input("preço do produto: "))
             if preco <0:
-                print("O preço dev ser maior que zero (0)")
+                print(Fore.RED + "O preço deve ser maior que zero (0)")
                 continue
                 
             break
         except ValueError: 
-        print("Digite um preço válido!")
+        print(Fore.RED + "Digite um preço válido!")
         
     while True: 
         try: 
             quantidade= int(input("quantidade de produtos:"))
             if quantidade <0:
-                print:("A quantidade deve ser maior que zero (0)")
+                print:(Fore.RED + "A quantidade deve ser maior que zero (0)")
                 continue
                 
             break
         except ValueError:
-            print("Digite uma quantidade válida!")
+            print(Fore.RED + "Digite uma quantidade válida!")
 
     with open (arquivo, "a", encoding="utf-8") as dado:
         dado.write(
@@ -46,15 +47,15 @@ def cadastrar(arquivo):
 
 def listar_produtos(arquivo):
     print()
-    print("====== PRODUTOS CADASTRADOS ====== \n")
+    print(Fore.GREEN"====== PRODUTOS CADASTRADOS ====== \n")
 
     with open(arquivo, "r", encoding="utf-8") as dados:
         for linha in dados:
             lista=linha.split(", ")
 
-            print(f"Produto: {lista[0]} ")
-            print(f"Preço: {lista[1]}")
-            print(f"Quantidade: {lista[2]} ")
+            print(f"{Fore.YELLOW}Produto: {lista[0]} ")
+            print(f"{Fore.YELLOW}Preço: {lista[1]}")
+            print(f"{Fore.YELLOW}Quantidade: {lista[2]} ")
 
 
 arquivo= r"C:\Users\manur\OneDrive\Documentos\EM 1DS\PA\trabalho em grupo\Desenvolvimento-colaborativo-com-git-e-github\produtos.txt"
@@ -76,4 +77,4 @@ while True:
     escolha = int(input("O que você deseja fazer? "))
     return escolha
 except valueError:
-    print("Digite apenas um número!")
+    print(Fore.RED + "Digite apenas um número!")
