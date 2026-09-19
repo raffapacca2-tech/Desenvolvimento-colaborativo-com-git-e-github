@@ -1,5 +1,6 @@
 import os
 import colorama 
+colorama.init()
 
 def menu():
     print()
@@ -14,9 +15,28 @@ def cadastrar(arquivo):
     print("====== CADASTRO DE PRODUTOS ====== \n ")
 
     nome_produto= input("Nome do produto: ")
-    preco= float(input("preço do produto: "))
-    quantidade= int(input("quantidade de produtos:"))
-
+    
+    while True:
+        try:
+            preco = float(input("preço do produto: "))
+            if preco <0:
+                print("O preço dev ser maior que zero (0)")
+                continue
+                
+            break
+        except ValueError: 
+        print("Digite um preço válido!")
+        
+    while True: 
+        try: 
+            quantidade= int(input("quantidade de produtos:"))
+            if quantidade <0:
+                print:("A quantidade deve ser maior que zero (0)")
+                continue
+                
+            break
+        except ValueError:
+            print("Digite uma quantidade válida!")
 
     with open (arquivo, "a", encoding="utf-8") as dado:
         dado.write(
@@ -50,3 +70,10 @@ while True:
 
     if escolha == 0:
         break
+
+while True: 
+    try:
+    escolha = int(input("O que você deseja fazer? "))
+    return escolha
+except valueError:
+    print("Digite apenas um número!")
